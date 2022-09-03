@@ -1,0 +1,8 @@
+@mixin border {
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+@mixin ActiveBorder {
+  border: 3px solid var(--border-focus-color) !important;
+  border-radius: 5px !important;
+}

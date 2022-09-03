@@ -1,0 +1,52 @@
+<div class="product-list-viewer" [ngClass]="openedProductEditor ? 'active-viewer' : ''"
+  (clickOutside)="openedProductEditor = false">
+  <div class="header-container" (click)="openedProductEditor = !openedProductEditor">
+    <p [ngClass]="selectedProduct?.id ? '' : 'placeholder'">
+      {{selectedProduct?.id ? selectedProduct.name : 'select or add new product'}}
+      <span *ngIf="selectedProduct?.id" class="icon-cross"
+        (click)="selectedProduct = null; showProductForm = false"></span>
+    </p>
+  </div>
+
+  <i class="icon-chevron-down"></i>
+
+  <div class="product-list-editor">
+    <div class="editors">
+      <div class="search-input">
+        <input type="text" placeholder="Search Products" [(ngModel)]= "searchTerm" (input)="filterProducts()">
+        <i class="icon-search"></i>
+      </div>
+
+      <div class="add-new-product" (click)="addNewProduct()">
+        <i class="icon-plus"></i>
+        Add New Product
+      </div>
+    </div>
+    <div class="horizontal-row"></div>
+
+    <div class="product-list">
+      <div class="product" *ngFor="let product of filteredProducts"
+        (click)="selectProduct(product)">
+        {{product.name}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="showProductForm">
+  <app-product-form [selectedProduct]="selectedProduct" (closeForm)="closeForm()"
+    (deleteProductEmit)="updateDeleteProduct($event, 'delete')" (addEditProduct)="updateDeleteProduct($event, 'update')">
+  </app-product-form>
+</ng-container>
+
+
+<ng-container *ngIf="showconfirmationPopup">
+  <app-popup (closePopupEmitter)="showconfirmationPopup = false" [seletcedProduct]="selectedProduct"
+    [popupType]="popupType" (addEditProduct)="saveProduct($event)" (deleteProductEmit)="deleteProduct($event)">
+  </app-popup>
+</ng-container>
+
+<ng-container *ngIf="showToaster">
+  <app-toaster [message]='message' (closeToasterEmitter)="showToaster = false">
+  </app-toaster>
+</ng-container>

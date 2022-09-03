@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/icons";
+@import "./assets/styles/reset";
+
+:root {
+  --border-color: #d6d6d6;
+  --border-focus-color: #0080f966;
+  --inactive-color: #828282;
+  --hover-color: #edecee;
+  --white-color: #ffffff;
+  --theme-color: #00bcb4;
+  --theme-hover-color: #04e2d7;
+  --danger-color: #c40000;
+  --danger-hover-color: #f50202;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  height: 100vh;
+  background: #f6f7fb;
+}
+
+button {
+  cursor: pointer;
+}
+
+.cancel {
+  color: var(--inactive-color);
+  margin-right: 20px;
+}
+
+.submit,
+.delete-outlined {
+  width: 94px;
+  height: 40px;
+  border-radius: 5px;
+  color: var(--white-color);
+  transition: all 0.3s;
+}
+
+.submit {
+  background: var(--theme-color) !important;
+
+  &.disabled{
+    opacity: .5;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background: var(--theme-hover-color) !important;
+  }
+}
+
+.delete-outlined {
+  background: var(--danger-color) !important;
+
+  &:hover {
+    background: var(--danger-hover-color) !important;
+  }
+}
+
+input:focus-visible{
+  outline: none;
+}

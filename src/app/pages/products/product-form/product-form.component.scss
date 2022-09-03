@@ -1,0 +1,224 @@
+@import "../../../../assets/styles/@mixins.scss";
+
+form {
+  margin: 20px 0;
+
+  .form-group {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    .error-message{
+      text-indent: 10px;
+      color: var(--danger-color);
+      margin-top: 5px;
+      text-transform: capitalize;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font: normal normal normal 14px/21px Poppins;
+
+      span {
+        color: var(--inactive-color);
+      }
+    }
+
+    .inline-label {
+      display: inline;
+      margin-left: 10px;
+      margin-bottom: 0;
+    }
+
+    .border-input {
+      width: 100%;
+      max-width: 500px;
+      height: 40px;
+      text-indent: 10px;
+      border-radius: 5px;
+      @include border;
+    }
+
+    .flex {
+      display: flex;
+
+      .radio-item {
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .grouped-inputs {
+    max-width: 500px;
+    display: flex;
+    justify-content: space-around;
+
+    @media(max-width: 500px){
+      flex-direction: column;
+
+      .form-group{
+        width: 100% !important;
+      }
+    }
+
+    .form-group {
+      width: calc(50% - 15px);
+    }
+
+    .password-input {
+      position: relative;
+
+      i {
+        position: absolute;
+        right: 10px;
+        top: 15px;
+        cursor: pointer;
+      }
+    }
+
+    .content-input {
+      position: relative;
+
+      .value-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 50px;
+        border-right: 1px solid var(--border-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      input {
+        text-indent: 60px;
+      }
+    }
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    max-width: 500px;
+
+    button {
+      border: 0;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .delete {
+      color: var(--danger-color);
+    }
+
+    .submit-options {
+      display: flex;
+    }
+  }
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--white-color);
+  margin: 0;
+  font: inherit;
+  color: var(--theme-color);
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid var(--theme-color);
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+  position: relative;
+  place-content: center;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 0.6em;
+  height: 0.6em;
+  position: absolute;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--theme-color);
+  background-color: CanvasText;
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  border-radius: 5px;
+  background-color: var(--white-color);
+  @include border;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: var(--hover-color);
+}
+
+.container input:checked ~ .checkmark {
+  background-color: var(--theme-color);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 2px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

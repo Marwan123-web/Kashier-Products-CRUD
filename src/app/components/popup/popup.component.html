@@ -1,0 +1,21 @@
+<div class="popup-layout">
+  <div class="popup-container">
+    <div class="header">
+      <p>
+        {{popupType == 'update' ? 'Save changes ?' : popupType == 'delete' ? 'Delete ' + seletcedProduct?.name : popupType == 'add' ? 'Add New Product' : ''}}
+      </p>
+
+      <i class="icon-cross" (click)="closePopup()"></i>
+    </div>
+
+    <p>
+      {{popupType == 'update' ? 'Are you sure you want to save changes made ?' : popupType == 'delete' ? "Are you sure you want to delete product? once deleted, you won't be able to acess it again" : popupType == 'add' ? 'Are You Sure You Want To Add New Product':''}}
+    </p>
+
+    <div class="actions">
+      <button class="cancel" (click)="closePopup()">Discard</button>
+      <button *ngIf="popupType == 'delete'" class="delete-outlined" (click)="deleteProduct()">Delete</button>
+      <button *ngIf="popupType == 'update' || popupType == 'add'" class="submit" (click)="saveProduct()">Save</button>
+    </div>
+  </div>
+</div>

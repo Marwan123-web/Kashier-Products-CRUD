@@ -1,0 +1,130 @@
+@import "../../../assets/styles/@mixins.scss";
+
+.product-list-viewer {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-indent: 10px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  outline: 0;
+  background: var(--white-color);
+  @include border;
+
+  .header-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .icon-cross {
+      font-size: 10px;
+      cursor: pointer;
+    }
+  }
+
+  &.active-viewer {
+    outline: none;
+    @include ActiveBorder;
+
+    i.icon-chevron-down {
+      transform: rotate(180deg);
+    }
+  }
+
+  i {
+    padding-right: 10px;
+    transition: all 0.3s;
+
+    &.icon-search{
+      padding: 0;
+    }
+  }
+
+  .placeholder {
+    opacity: 0.5;
+  }
+
+  &.active-viewer {
+    .product-list-editor {
+      height: 300px;
+      visibility: visible;
+      opacity: 1;
+      margin-top: 5px;
+    }
+  }
+
+  .product-list-editor {
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: height 0.3s;
+    position: absolute;
+    width: 100%;
+    top: 45px;
+    left: 0;
+    max-height: 300px;
+    background: var(--white-color);
+    z-index: 1;
+    @include border;
+
+    .editors {
+      .search-input {
+        position: relative;
+        margin: 10px;
+        width: calc(100% - 40px);
+
+        input {
+          width: 100%;
+          text-indent: 10px;
+          height: 38px;
+          @include border;
+        }
+
+        i {
+          position: absolute;
+          right: 0;
+          top: 12px;
+          color: var(--inactive-color);
+        }
+      }
+
+      .add-new-product {
+        padding: 10px;
+        margin-bottom: 10px;
+        font: normal normal normal 14px/21px Poppins;
+
+        &:hover {
+          background: var(--hover-color);
+        }
+
+        i {
+          color: var(--inactive-color);
+        }
+      }
+    }
+
+    .horizontal-row {
+      border: 1px solid #000000;
+      opacity: 0.1;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .product-list {
+      max-height: 200px;
+      overflow: auto;
+
+      .product {
+        padding: 10px;
+        text-transform: capitalize;
+
+        &:hover {
+          background: var(--hover-color);
+        }
+      }
+    }
+  }
+}

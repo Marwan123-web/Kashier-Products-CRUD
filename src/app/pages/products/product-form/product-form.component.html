@@ -1,0 +1,135 @@
+<form [formGroup]="productForm">
+  <div class="form-group">
+    <label for="inputName">Product Name</label>
+    <input type="text" id="inputName" class="border-input" placeholder="Product Name" formControlName="name">
+    <div *ngIf="productForm.get('name')?.invalid &&
+      (productForm.get('name')?.dirty || productForm.get('name')?.touched)"
+      class="error-message">
+      <div *ngIf="productForm.get('name')?.errors?.required">
+        product name is required
+      </div>
+      <div *ngIf="productForm.get('name')?.errors?.minlength">
+        product name should be at least 5 characters
+      </div>
+      <div *ngIf="productForm.get('name')?.errors?.maxlength">
+        product name should be at max 30 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="productType">Product Type</label>
+    <div class="flex">
+      <div class="radio-item" *ngFor="let type of productTypes">
+        <input type="radio" [id]="type.value" name="productType" formControlName="productType" [value]="type.value"
+          [placeholder]="type.name">
+        <label class="inline-label" [for]="type.name">{{type.name}}</label>
+      </div>
+    </div>
+    <div *ngIf="productForm.get('productType')?.invalid &&
+      (productForm.get('productType')?.dirty || productForm.get('productType')?.touched)"
+      class="error-message">
+      <div *ngIf="productForm.get('productType')?.errors">
+        Product Type is required
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputProductCategory">Product Category</label>
+    <input type="text" class="border-input" placeholder="Product Category" id="inputProductCategory"
+      formControlName="productCategory">
+    <div *ngIf="productForm.get('productCategory')?.invalid &&
+      (productForm.get('productCategory')?.dirty || productForm.get('productCategory')?.touched)"
+      class="error-message">
+      <div *ngIf="productForm.get('productCategory')?.errors?.required">
+        product Category is required
+      </div>
+      <div *ngIf="productForm.get('productCategory')?.errors?.minlength">
+        product Category should be at least 5 characters
+      </div>
+      <div *ngIf="productForm.get('productCategory')?.errors?.maxlength">
+        product Category should be at max 20 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group radio-item">
+    <label class="container">This is a sub-category
+      <input type="checkbox" id="inputProdctSubCategory" formControlName="subCategory">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+
+  <div class="grouped-inputs">
+    <div class="form-group">
+      <label for="inputReferenceID">Reference ID <span>(optional)</span></label>
+      <input type="text" class="border-input" placeholder="Reference ID" id="inputReferenceID"
+        formControlName="referenceId">
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">password</label>
+      <div class="password-input">
+        <input type="password" class="border-input" placeholder="password" id="inputPassword"
+          formControlName="password">
+        <i [ngClass]="showenPasswrd ? 'icon-eye' : 'icon-eye-off'" (click)="chanegePasswordType()"></i>
+      </div>
+      <div *ngIf="productForm.get('password')?.invalid &&
+        (productForm.get('password')?.dirty || productForm.get('password')?.touched)"
+        class="error-message">
+        <div *ngIf="productForm.get('password')?.errors?.required">
+          password is required
+        </div>
+        <div *ngIf="productForm.get('password')?.errors?.minlength">
+          password should be at least 8 characters
+        </div>
+        <div *ngIf="productForm.get('password')?.errors?.maxlength">
+          password should be at max 15 characters
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grouped-inputs">
+    <div class="form-group">
+      <label for="deleveryFeesAmount">Delevery Fees Amount</label>
+      <div class="content-input">
+        <div class="value-content">EGP</div>
+        <input type="text" class="border-input" placeholder="Delevery fees amount" id="deleveryFeesAmount"
+          formControlName="deleveryFeesAmount">
+      </div>
+      <div *ngIf="productForm.get('deleveryFeesAmount')?.invalid &&
+        (productForm.get('deleveryFeesAmount')?.dirty || productForm.get('deleveryFeesAmount')?.touched)"
+        class="error-message">
+        <div *ngIf="productForm.get('deleveryFeesAmount')?.errors?.required">
+          Delevery Fees is required
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="deleveryFeesPercentage">Delevery Fees Percentage</label>
+      <div class="content-input">
+        <div class="value-content">%</div>
+        <input type="text" class="border-input" placeholder="Delevery fees percentage" id="deleveryFeesPercentage"
+          formControlName="deleveryFeesPercentage">
+      </div>
+      <div *ngIf="productForm.get('deleveryFeesPercentage')?.invalid &&
+        (productForm.get('deleveryFeesPercentage')?.dirty || productForm.get('deleveryFeesPercentage')?.touched)"
+        class="error-message">
+        <div *ngIf="productForm.get('deleveryFeesPercentage')?.errors?.required">
+          Delevery Percentage is required
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <div class="delete-product">
+      <button class="delete" (click)="deleteProduct()" *ngIf="selectedProduct?.id">Delete</button>
+    </div>
+    <div class="submit-options">
+      <button class="cancel" (click)="cancel()">Cancel</button>
+      <button class="submit" (click)="saveProduct()">Save</button>
+    </div>
+  </div>
+</form>

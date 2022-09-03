@@ -1,0 +1,54 @@
+@import "../../../assets/styles/@mixins.scss";
+
+.popup-layout {
+  width: calc(100vw - 30px);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #00000033;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  .popup-container {
+    background: var(--white-color);
+    padding: 2rem;
+    min-width: 500px;
+    width: 50vw;
+    @include border;
+    p{
+      text-transform: capitalize;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 1rem;
+
+      p {
+        font: normal normal 600 16px/25px Poppins;
+        text-transform: capitalize;
+      }
+
+      i {
+        cursor: pointer;
+      }
+    }
+
+    .actions {
+      margin-top: 2rem;
+      text-align: end;
+
+      button {
+        border: 0;
+        background: white;
+      }
+    }
+
+    @media (max-width: 650px) {
+      min-width: auto;
+    }
+  }
+}
