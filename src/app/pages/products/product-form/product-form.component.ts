@@ -79,13 +79,18 @@ export class ProductFormComponent implements OnInit, OnChanges {
 
     ngOnInit(): void {
         this.productForm.controls.deleveryFeesAmount.valueChanges.subscribe((str: string) => {            
-            const newVal = str.replace(/ /g, '' ).replace(/[^0-9]/g, '')
+            const newVal = str.replace(/ /g, '' ).replace(/[^0-9.]/g, '')
             this.productForm.controls.deleveryFeesAmount.setValue(newVal, {emitEvent: false});
         });
         this.productForm.controls.deleveryFeesPercentage.valueChanges.subscribe((str: string) => {
             console.log(str);
-            const newVal = str.replace(/ /g, '' ).replace(/[^0-9]/g, '')
+            const newVal = str.replace(/ /g, '' ).replace(/[^0-9.]/g, '')
             this.productForm.controls.deleveryFeesPercentage.setValue(newVal, {emitEvent: false});
+        });
+        this.productForm.controls.referenceId.valueChanges.subscribe((str: string) => {
+            console.log(str);
+            const newVal = str.replace(/ /g, '' ).replace(/[^0-9]/g, '')
+            this.productForm.controls.referenceId.setValue(newVal, {emitEvent: false});
         });
     }
 

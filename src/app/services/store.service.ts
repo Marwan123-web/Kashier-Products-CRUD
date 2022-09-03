@@ -9,9 +9,9 @@ export class StoreService {
   productList: any = new BehaviorSubject<Product[]>([
     {
       id: 1,
-      name: 'product 1',
+      name: 'Iphone 13',
       productType: 1,
-      productCategory: 'category 1',
+      productCategory: 'Apple',
       subCategory: false,
       referenceId: 1,
       password: '',
@@ -20,10 +20,10 @@ export class StoreService {
     },
     {
       id: 2,
-      name: 'sub item 2',
+      name: 'Samsung Galaxy Note 20',
       productType: 2,
-      productCategory: 'category 2',
-      subCategory: false,
+      productCategory: 'Samsung',
+      subCategory: true,
       referenceId: 2,
       password: '',
       deleveryFeesAmount: 200,
@@ -31,10 +31,10 @@ export class StoreService {
     },
     {
       id: 3,
-      name: 'category 3',
+      name: 'Hawawi m9',
       productType: 2,
-      productCategory: 'category 3',
-      subCategory: false,
+      productCategory: 'Hawawi',
+      subCategory: true,
       referenceId: 3,
       password: '',
       deleveryFeesAmount: 300,
@@ -42,10 +42,10 @@ export class StoreService {
     },
     {
       id: 4,
-      name: 'item 4',
+      name: 'Mi Note 8',
       productType: 1,
-      productCategory: 'category 4',
-      subCategory: false,
+      productCategory: 'Mi',
+      subCategory: true,
       referenceId: 4,
       password: '',
       deleveryFeesAmount: 400,
@@ -56,7 +56,7 @@ export class StoreService {
 
   addProduct(product: Product) {
     let res = this.productList.getValue();
-    res.push(product);
+    res.unshift(product);
     this.productList.next(res);
   }
 
